@@ -56,7 +56,7 @@ def screenshot_at_the_end(func=None, *, application=None):
 
     @functools.wraps(func)
     def wrapper(self, *args, **kwargs):
-        active_application = application(self) if application else self.application
+        active_application = application if application else self.application
         try:
             return func(self, *args, **kwargs)
         finally:

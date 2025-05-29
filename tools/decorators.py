@@ -82,6 +82,7 @@ def _take_screenshot(application, title):
 
 
 def api_allure_step(func=None, **kw):
+    # customized allure step for api
     if func is None:
         return lambda f: api_allure_step(f, **kw)
 

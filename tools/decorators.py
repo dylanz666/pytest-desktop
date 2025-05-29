@@ -106,20 +106,20 @@ def api_allure_step(func=None, **kw):
         Logger().info(f"[{method}]", url)
 
         with allure.step(f"{method} {url}"):
-            log_and_attach("Request Headers", headers)
-            log_and_attach("JSON Request Body", json, is_json=True)
-            log_and_attach("Text Request Body", data, is_text=True)
-            log_and_attach("Arguments", arguments)
+            _log_and_attach("Request Headers", headers)
+            _log_and_attach("JSON Request Body", json, is_json=True)
+            _log_and_attach("Text Request Body", data, is_text=True)
+            _log_and_attach("Arguments", arguments)
 
             response = func(*args, **kwargs)
-            log_response(response)
+            _log_response(response)
 
         return response
 
     return wrapper
 
 
-def log_and_attach(name, data, is_json=False, is_text=False):
+def _log_and_attach(name, data, is_json=False, is_text=False):
     """Log and attach data to allure."""
     if not data:
         return
@@ -135,7 +135,7 @@ def log_and_attach(name, data, is_json=False, is_text=False):
     allure.attach(json_tool.dumps(data, indent=2), name=name, attachment_type=allure.attachment_type.JSON)
 
 
-def log_response(response):
+def _log_response(response):
     """Log the response body."""
     try:
         data = response.json()

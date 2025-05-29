@@ -108,6 +108,7 @@ def api_allure_step(func=None, **kw):
             log_and_attach("Request Headers", headers)
             log_and_attach("JSON Request Body", json, is_json=True)
             log_and_attach("Text Request Body", data, is_text=True)
+            log_and_attach("Arguments", arguments)
 
             response = func(*args, **kwargs)
             log_response(response)

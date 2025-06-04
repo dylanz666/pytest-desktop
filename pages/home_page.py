@@ -15,7 +15,7 @@ class HomePage(BasePage):
     def is_opened(self):
         self.window = self.application.window()
         self.window_title = self.window.window_text()
-        assert "- Notepad" not in self.window_title, "The notepad is not opened"
+        assert "- Notepad" in self.window_title, "The notepad is not opened"
 
     @allure_step
     @screenshot_on_failure

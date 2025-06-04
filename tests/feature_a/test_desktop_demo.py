@@ -1,5 +1,4 @@
 import os
-import time
 
 import pytest
 import allure
@@ -16,7 +15,7 @@ class TestDesktopDemo:
         os.system("taskkill /IM notepad.exe /F")
 
         self.application_path = ConfigUtil.get_application_path()
-        Application().start('notepad.exe')
+        Application().start(self.application_path)
         self.application = Application(backend="uia").connect(path=self.application_path, title="*- Notepad")
 
         self.home_page = HomePage(self.application)
